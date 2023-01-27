@@ -1,15 +1,20 @@
-import sympy
+
+from sympy import *
 
 #initialize first equation
-original_equation = input("Enter the starting equation");
+original_equation = sympify(parsing.parse_expr(input("Enter the starting equation: \n")));
 
 while True:
     #get subsequent equation
-    next_equation = input("Enter the next equality");
+    try:
+        next_equation = sympify(parsing.parse_expr(input("=      ")));
 
-    #check if original and next equation are equivalent
-    if sympy.simplify(original_equation) == sympy.simplify(next_equation):
-        print("Correct.")
-    else:
-        print("You just made a mistake. Try again.")
+    
+            #check if original and next equation are equivalent
+        if expand(original_equation) == expand(next_equation):
+            print("Correct.")
+        else:
+            print("You just made a mistake. Try again.")
+    except:
+        print("Formatting error.")
 
