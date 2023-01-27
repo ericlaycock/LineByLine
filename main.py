@@ -1,13 +1,14 @@
 
 from sympy import *
+from sympy.parsing.sympy_parser import (parse_expr, standard_transformations, implicit_multiplication_application)
 
 #initialize first equation
-original_equation = sympify(parsing.parse_expr(input("Enter the starting equation: \n")));
+original_equation = sympify(parse_expr(input("Enter the starting equation: \n"), transformations=(standard_transformations+(implicit_multiplication_application,))));
 
 while True:
     #get subsequent equation
     try:
-        next_equation = sympify(parsing.parse_expr(input("=      ")));
+        next_equation = sympify(parse_expr(input("=      "), transformations=(standard_transformations + (implicit_multiplication_application,))));
 
     
             #check if original and next equation are equivalent
